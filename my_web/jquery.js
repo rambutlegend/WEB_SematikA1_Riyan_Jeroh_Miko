@@ -8,5 +8,7 @@ $(".halaman").click(function(){
         $("#halaman_body").load("mahasiswa.php")
     }else if (halaman == "prodi") {
         $("#halaman_body").load("prodi.php")
+    }else if (halaman == "profile") {
+        $("#halaman_body").load("views/profile.php")
     }
 })

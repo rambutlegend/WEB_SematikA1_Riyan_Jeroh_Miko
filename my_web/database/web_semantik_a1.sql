@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2023 at 03:03 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jul 15, 2023 at 07:28 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -36,7 +36,7 @@ CREATE TABLE `mahasiswa` (
   `alamat` text NOT NULL,
   `simpan` datetime NOT NULL,
   `edit` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -45,11 +45,34 @@ CREATE TABLE `mahasiswa` (
 --
 
 CREATE TABLE `prodi` (
-  `Id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `nama_prodi` varchar(50) NOT NULL,
   `simpan` datetime NOT NULL,
   `edit` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `nama` varchar(25) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `login` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `nama`, `password`, `created`, `updated`, `login`) VALUES
+(1, 'fikti', 'FIKTI UMSU', '$2y$10$2HkKVJhfcnd9oGdkF2HgO.1o09JYhPtfmPG4aOjyaFAIz3hS.4o8y', '2023-07-15 11:47:45', '2023-07-15 11:47:45', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -66,8 +89,15 @@ ALTER TABLE `mahasiswa`
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
-  ADD PRIMARY KEY (`Id`),
+  ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nama_prodi` (`nama_prodi`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -83,7 +113,13 @@ ALTER TABLE `mahasiswa`
 -- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
